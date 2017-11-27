@@ -12,6 +12,13 @@ class ControllerUsuario
         return $listareserva->SelectReservas();
     }
 
+    public function ListarUltimaReserva(){
+        require_once('models/usuario_class.php');
+        $listaultreserva = new Usuario();
+        $listaultreserva->idCliente = $this->idCliente;
+        return $listaultreserva->SelectUltimaReserva();
+    }
+
 
 
   public function Inserir(){

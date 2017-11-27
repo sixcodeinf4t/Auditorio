@@ -52,8 +52,10 @@
     .divUltimas{
         height: 500px;
         margin-left: 250px;
-        width: 100%;
+        width: 90%;
+
         position: relative;
+
     }
 
     .divHotel{
@@ -62,6 +64,7 @@
         width: 430px;
         background-color: #85f71b;
         float: left;
+        position: relative;
         margin-right: 30px;
         -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
         -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
@@ -82,43 +85,31 @@
     }
 
     #segura{
-        width: 200%;
+
+        width: inherit;
+        /*background-color: yellow;*/
         height: 100%;
         display: flex;
     }
 
-    #segura section{
-        width: 100%;
-        float: left;
-    }
 
-    #segura img{
-        height: 100%;
-        width: 100%;
-        display: block;
-    }
+
 
     #segura2{
-        width: 200%;
+        width: inherit;
+        /*background-color: yellow;*/
         height: 100%;
         display: flex;
     }
 
-    #segura2 section{
-        width: 100%;
-        float: left;
-    }
 
-    #segura2 img{
-        height: 100%;
-        width: 100%;
-        display: block;
-    }
+
 
     #btn-prev, #btn-next{
         height: 100px;
         width: 70px;
         background-color: rgba(0,0,0,0.7);
+        border:0;
         position: absolute;
         top: 123%;
         line-height: 100px;
@@ -128,9 +119,15 @@
         cursor: pointer;
         font-family: Calibri;
         transform: translateY(-50%);
-        display: none;
+
         border-radius: 3px;
         font-weight: lighter;
+        -webkit-touch-callout: none;
+   -webkit-user-select: none;
+   -khtml-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
     }
 
     #btn-prev{
@@ -146,6 +143,7 @@
         width: 70px;
         background-color: rgba(45,45,45,0.7);
         position: absolute;
+        border:0;
         top: 188.7%;
         line-height: 100px;
         color: #fff;
@@ -154,9 +152,15 @@
         cursor: pointer;
         font-family: Calibri;
         transform: translateY(-50%);
-        display: none;
+
         border-radius: 3px;
         font-weight: lighter;
+        -webkit-touch-callout: none;
+   -webkit-user-select: none;
+   -khtml-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
     }
 
     #btn-ant{
@@ -171,11 +175,23 @@
         height: 300px;
         width: 100%;
         background-color: aquamarine;
+        -webkit-touch-callout: none;
+   -webkit-user-select: none;
+   -khtml-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
     }
 
     .fotoHotel img{
         height: 100%;
         width: 100%;
+        -webkit-touch-callout: none;
+   -webkit-user-select: none;
+   -khtml-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
     }
 
     .contHotel{

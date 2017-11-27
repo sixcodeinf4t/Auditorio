@@ -112,6 +112,7 @@
 
               $IdComodidades = $IdComodidades.','.$itemHotel->id;
 
+
           }
 
         //$listHotel[] = $itemHotel;
@@ -154,15 +155,16 @@
 
 
         if($IdComodidades !="0"){
-          $where = $where ." and idComodidadeHotel in(".$IdComodidades.")";
-        }
+          $where = $where ." and idComodidadeHotel  in(".$IdComodidades.")";
+      }else{
+          $where = $where ." group by idHotel";
+      }
 
 
         $sql = $sql.$where.";";
 
 
-        //echo $where;
-        echo ($sql);
+        // echo ($sql);
 
         $select = mysql_query($sql);
         $cont = 0;
@@ -176,19 +178,31 @@
 
           //$listComo[] = new SelectBuscaAvancada();
 
-          $item->nomeQuarto=$rs['nome'];
-          $item->bairro=$rs['bairro'];
-          $item->logradouro=$rs['logradouro'];
-          $item->preco=$rs['valorDiario'];
-          $item->cidade=$rs['cidade'];
-          $item->nomeParceiro=$rs['nomeParceiro'];
 
-          $item->hotel=$rs['hotel'];
-          $item->imagemHotel=$rs['caminhoImagem'];
-          $item->qtdEstrelas=$rs['qtdEstrelas'];
+          $sql = "select * from tbl_imagem
+                    inner join tbl_hotel as h
+                    inner join tbl_hotelimagem as hi
+                    on hi.idHotel = h.idHotel and hi.idImagem = tbl_imagem.idImagem
+                    where h.idHotel =".$rs['idHotel']." limit 1;";
+
+        $selectImagemHotel = mysql_query($sql);
+
+            if($row = mysql_fetch_array($selectImagemHotel)){
+
+              $item->bairro=$rs['bairro'];
+              $item->logradouro=$rs['logradouro'];
+              $item->preco=$rs['valorDiario'];
+              $item->cidade=$rs['cidade'];
+              $item->nomeParceiro=$rs['nomeParceiro'];
+
+              $item->hotel=$rs['hotel'];
+              $item->idHotel=$rs['idHotel'];
+              $item->imagemHotel=$row['caminhoImagem'];
+              $item->qtdEstrelas=$rs['qtdEstrelas'];
 
 
-          $listComo[] = $item;
+              $listComo[] = $item;
+            }
         }
 
         if (mysql_num_rows($select)>0) {
@@ -286,19 +300,30 @@
 
           //$listComo[] = new SelectBuscaAvancada();
 
-          $item->nomeQuarto=$rs['nome'];
-          $item->bairro=$rs['bairro'];
-          $item->logradouro=$rs['logradouro'];
-          $item->preco=$rs['valorDiario'];
-          $item->cidade=$rs['cidade'];
-          $item->nomeParceiro=$rs['nomeParceiro'];
 
-          $item->hotel=$rs['hotel'];
-          $item->imagemHotel=$rs['caminhoImagem'];
-          $item->qtdEstrelas=$rs['qtdEstrelas'];
+          $sql = "select * from tbl_imagem
+                    inner join tbl_hotel as h
+                    inner join tbl_hotelimagem as hi
+                    on hi.idHotel = h.idHotel and hi.idImagem = tbl_imagem.idImagem
+                    where h.idHotel =".$rs['idHotel']." limit 1;";
+
+        $selectImagemHotel = mysql_query($sql);
+
+            if($row = mysql_fetch_array($selectImagemHotel)){
+
+                  $item->bairro=$rs['bairro'];
+                  $item->logradouro=$rs['logradouro'];
+                  $item->preco=$rs['valorDiario'];
+                  $item->cidade=$rs['cidade'];
+                  $item->nomeParceiro=$rs['nomeParceiro'];
+
+                  $item->hotel=$rs['hotel'];
+                  $item->imagemHotel=$row['caminhoImagem'];
+                  $item->qtdEstrelas=$rs['qtdEstrelas'];
 
 
-          $listComo[] = $item;
+                  $listComo[] = $item;
+              }
         }
 
         if (mysql_num_rows($select)>0) {

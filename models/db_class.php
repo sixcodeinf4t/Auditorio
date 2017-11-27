@@ -29,7 +29,7 @@ class Mysql_db
         if ($conexao = mysql_connect($this->server, $this->user, $this->password))
         {
 			mysql_set_charset('utf8');
-            mysql_select_db('portaltourdreams');
+            mysql_select_db('dbtourdreams');
             return $conexao;
 
         }

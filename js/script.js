@@ -764,7 +764,7 @@ function preencherConheca(destino) {
 
 function enviarAvaliacao()
 {
-    var avaliacao = $("#txtAtendimento").val()+','+$("#txtConforto").val()+','+$("#txtLazer").val()+','+$("#txtLimpeza").val()+','+$("#txtLocalizacao").val()+','+$("#txtPreco").val()+','+$("#txtIdHotel").val()+','+$("#txtIdCliente").val();
+    var avaliacao = $("#txtAtendimento").val()+','+$("#txtConforto").val()+','+$("#txtLazer").val()+','+$("#txtLimpeza").val()+','+$("#txtLocalizacao").val()+','+$("#txtPreco").val()+','+$("#txtIdHotel").val();
     $.ajax({
         type: "POST",
         url: "api/enviar_avaliacao.php",
@@ -788,3 +788,11 @@ $(document).ready(function() {
     $('#txtCodigoSeguranca').attr("required",true);
     $('#txtValidade').attr("required",true);
 });
+
+function buscarEstado(estado){
+    window.location.href = "busca.php?estado="+estado;
+}
+
+function buscarRegiao(regiao){
+    window.location.href = "busca.php?regiao="+regiao;
+}

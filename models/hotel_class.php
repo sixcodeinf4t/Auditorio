@@ -40,8 +40,13 @@
                     $sql = "select LAST_INSERT_ID() as idHotel";
                     $select = mysql_query($sql);
                     if($rs = mysql_fetch_array($select)){
+                        $idHotel = $rs['idHotel'];
 
-                        return $idHotel = $rs['idHotel'];
+
+                        $sql="insert into tbl_avaliacao(limpeza,conforto,lazer,atendimento,localizacao,preco,idHotel)";
+                        $sql = $sql." values('50','50','50','50','50','50',".$idHotel.");";
+                        mysql_query($sql) or die(mysql_error());
+                        return $idHotel;
 
                     }
                 }

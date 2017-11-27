@@ -147,7 +147,22 @@
             require_once('controllers/buscaRapida_controller.php');
             require_once('models/buscaRapida_class.php');
 
-            if (isset($_GET['btn_pesquisar'])) {
+        if(isset($_GET['estado'])){
+            require_once('controllers/buscaestado_controller.php');
+            require_once('models/buscaEstado_class.php');
+            $estado = $_GET['estado'];
+            $controllerBuscaEstado = new controllerBuscaEstado();
+            $controllerBuscaEstado->estado = $estado;
+            $rows = $controllerBuscaEstado->buscaEstado();
+
+        }elseif(isset($_GET['regiao'])){
+            require_once('controllers/buscaRegiao_controller.php');
+            require_once('models/buscaRegiao_class.php');
+            $regiao = $_GET['regiao'];
+            $controllerBuscaRegiao = new controllerBuscaRegiao();
+            $controllerBuscaRegiao->regiao = $regiao;
+            $rows = $controllerBuscaRegiao->buscaRegiao();
+        }elseif (isset($_GET['btn_pesquisar'])) {
               if($_GET['btn_pesquisar']  == 'PESQUISAR'){
 
 
@@ -159,7 +174,7 @@
 
               $controllerBuscaRapida = new ControllerBuscaRapida();
               $rows = $controllerBuscaRapida->Buscar();
-            }
+        }
             elseif($_GET['btn_pesquisar']  == 'FILTRO') {
 
 

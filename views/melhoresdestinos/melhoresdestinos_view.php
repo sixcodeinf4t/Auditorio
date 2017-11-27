@@ -2,9 +2,12 @@
 
   require_once('controllers/melhoresDestinos_controller.php');
   $listMelhores = new ControllerMelhoresDestinos();
+  $listUltimas = new ControllerMelhoresDestinos();
+  $listPerfil = new ControllerMelhoresDestinos();
 
   $row = $listMelhores->ListarMelhoresDestinos();
-
+  $rowUltimas = $listUltimas->ListarUltimaReserva();
+  $rowPerfil = $listPerfil->ListarBaseadoPerfil();
 
 
  ?>
@@ -26,35 +29,39 @@
                 <section>
                     <?php
                         $cont = 0;
-                        while($cont < 6){
+                        while($cont < count($rowUltimas)){
                     ?>
+                        <script type="text/javascript">
+                            var largura = 460 * <?php echo(count($rowUltimas)); ?>;
+                            $('#segura').css("width",largura + "px");
+                        </script>
                         <div class="divHotel">
                             <div class="fotoHotel">
-                                <img alt="" src="imagens/melhoresDestinos/hotelExemplo.jpg"  onmousedown="return false">
+                                <img alt="" src="<?php echo($rowUltimas[$cont]->caminhoImagem) ?>"  onmousedown="return false">
                             </div>
                             <div class="contHotel">
                                 <table class="tblInfoHotel">
                                     <tr>
                                         <td>
-                                            Hollywood Tower Hotel
+                                            <?php echo($rowUltimas[$cont]->hotel); ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            Salvador - BA
+                                            <?php echo($rowUltimas[$cont]->cidade." - ".$rowUltimas[$cont]->uf); ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            Av. do Teste do Site
+                                            <?php echo($rowUltimas[$cont]->logradouro." - N° ".$rowUltimas[$cont]->numero); ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <?php
-                                                $star = rand(1,5);
+
                                                 $i = 0;
-                                                while($i < $star ){
+                                                while($i < $rowUltimas[$cont]->qtdEstrelas ){
                                             ?>
                                                 <img alt="" src="imagens/busca/estrela.png">
                                             <?php
@@ -73,8 +80,8 @@
                 </section>
             </div>
         </div>
-        <div id="btn-prev">&#60;</div>
-        <div id="btn-next">&#62;</div>
+        <button onclick="moverEsquerda(this)" id="btn-prev">&#60;</button>
+        <button onclick="moverDireita(this)" id="btn-next">&#62;</button>
         <!---->
     </div>
 </section>
@@ -89,46 +96,51 @@
                 <section>
                     <?php
                         $cont = 0;
-                        while($cont < 6){
+                        while($cont < count($rowPerfil)){
                     ?>
-                        <div class="divHotel">
-                            <div class="fotoHotel">
-                                <img alt="" src="imagens/melhoresDestinos/hotelExemplo2.jpg"  onmousedown="return false">
-                            </div>
-                            <div class="contHotel">
-                                <table class="tblInfoHotel">
-                                    <tr>
-                                        <td>
-                                            Hotel Boladão que não sei o Nome
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Fernando de Noronha - PE
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Ilha Teste para Testar
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <?php
-                                                $star = rand(1,5);
-                                                $i = 0;
-                                                while($i < $star ){
-                                            ?>
-                                                <img alt="" src="imagens/busca/estrela.png">
-                                            <?php
-                                                    $i++;
-                                                }
-                                            ?>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
+                    <script type="text/javascript">
+                        var largura2 = 460 * <?php echo(count($rowPerfil)) ?>;
+                        $('#segura2').css("width",largura2 + "px");
+
+                    </script>
+                    <div class="divHotel">
+                        <div class="fotoHotel">
+                            <img alt="" src="<?php echo($rowUltimas[$cont]->caminhoImagem) ?>"  onmousedown="return false">
                         </div>
+                        <div class="contHotel">
+                            <table class="tblInfoHotel">
+                                <tr>
+                                    <td>
+                                        <?php echo($rowUltimas[$cont]->hotel); ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <?php echo($rowUltimas[$cont]->cidade." - ".$rowUltimas[$cont]->uf); ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <?php echo($rowUltimas[$cont]->logradouro." - N° ".$rowUltimas[$cont]->numero); ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <?php
+
+                                            $i = 0;
+                                            while($i < $rowUltimas[$cont]->qtdEstrelas ){
+                                        ?>
+                                            <img alt="" src="imagens/busca/estrela.png">
+                                        <?php
+                                                $i++;
+                                            }
+                                        ?>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
                     <?php
                             $cont++;
                         }
@@ -136,8 +148,8 @@
                 </section>
             </div>
         </div>
-        <div id="btn-ant">&#60;</div>
-        <div id="btn-prox">&#62;</div>
+        <button onclick="moverEsquerda2(this)" id="btn-ant">&#60;</button>
+        <button onclick="moverDireita2(this)" id="btn-prox">&#62;</button>
     </div>
 </section>
 <!---->

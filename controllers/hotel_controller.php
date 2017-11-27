@@ -76,7 +76,7 @@
                         $hotel_comodidade->comodidade = $comodidade;
                         $hotel_comodidade->idHotel = $idHotel;
                         $hotel_comodidade->InsertComodidade($hotel_comodidade);
-                        header('location:perfilParceiro.php?idParceiro='.$idParceiro);
+                        //header('location:perfilParceiro.php?idParceiro='.$idParceiro);
                     }
 
                 }

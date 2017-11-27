@@ -451,7 +451,7 @@ section
   width: 99%;
   height: 200px;
   font-size: 25px;
-
+  resize: none;
 }
 .buttonSalvarComentario{
   border: none;

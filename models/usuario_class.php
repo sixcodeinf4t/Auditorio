@@ -57,7 +57,7 @@
             return $lstreserva;
 
         }else{
-            return "Não há reservas!";
+            echo "Não há reservas!";
         }
 
 
@@ -65,7 +65,7 @@
 
     public function SelectUltimaReserva(){
 
-        $sql = "select t.dataInicio, t.dataFim, t.vlrTotal, h.hotel, h.qtdEstrelas, l.logradouro, l.numero,b.bairro, c.cidade,e.uf,p.nomeParceiro
+        $sql = "select t.idTransacao,t.dataInicio, t.dataFim, t.vlrTotal, h.hotel, h.qtdEstrelas, l.logradouro, l.numero,b.bairro,c.idCidade, c.cidade,e.uf,p.nomeParceiro, i.caminhoImagem
                 from tbl_transacao as t
                 inner join tbl_quarto as q
                 on t.idQuarto = q.idQuarto
@@ -81,7 +81,35 @@
                 on c.idEstado = e.idEstado
                 inner join tbl_parceiro as p
                 on h.idParceiro = p.idParceiro
-                order by t.idTransacao desc ;";
+                inner join tbl_imagem as i
+                inner join tbl_hotelimagem as hi
+                on hi.idHotel = h.idHotel and hi.idImagem = i.idImagem
+                where t.idCliente =".$this->idCliente."
+                group by t.idTransacao
+                order by t.idTransacao desc limit 1;";
+
+        $select = mysql_query($sql);
+
+        if($rs = mysql_fetch_array($select)){
+
+            $listReserva = new Usuario();
+
+            $listReserva->dataEntrada = $rs['dataInicio'];
+            $listReserva->dataSaida = $rs['dataFim'];
+            $listReserva->vlrTotal = $rs['vlrTotal'];
+            $listReserva->hotel = $rs['hotel'];
+            $listReserva->qtdEstrelas = $rs['qtdEstrelas'];
+            $listReserva->logradouro = $rs['logradouro'];
+            $listReserva->numero = $rs['numero'];
+            $listReserva->bairro = $rs['bairro'];
+            $listReserva->cidade = $rs['cidade'];
+            $listReserva->caminhoImagem = $rs['caminhoImagem'];
+            $listReserva->uf = $rs['uf'];
+            $listReserva->nomeParceiro = $rs['nomeParceiro'];
+
+            return $listReserva;
+
+        }
 
 
     }
